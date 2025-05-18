@@ -1,0 +1,166 @@
+.dashboard-container {
+  padding: 20px;
+  
+  h1 {
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    margin-bottom: 16px;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+  
+  section {
+    margin-bottom: 30px;
+  }
+}
+
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  
+  button {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    
+    mat-icon {
+      margin-bottom: 8px;
+      font-size: 24px;
+      height: 24px;
+      width: 24px;
+    }
+  }
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.metric-card {
+  .metric-title {
+    font-size: 0.9rem;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 8px;
+  }
+  
+  .metric-value {
+    font-size: 1.5rem;
+    font-weight: 500;
+    
+    &.positive {
+      color: #4caf50;
+    }
+    
+    &.negative {
+      color: #f44336;
+    }
+  }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+.stat-card {
+  mat-card-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .stat-icon {
+    font-size: 32px;
+    height: 32px;
+    width: 32px;
+    margin-right: 16px;
+    color: #3f51b5;
+  }
+  
+  .stat-details {
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+    
+    .stat-label {
+      font-size: 0.9rem;
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
+}
+
+.simple-table {
+  width: 100%;
+  border-collapse: collapse;
+  
+  th, td {
+    padding: 12px 8px;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  
+  th {
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .amount-cell {
+    text-align: right;
+  }
+  
+  .entry-row {
+    cursor: pointer;
+    
+    &:hover {
+      background: rgba(0, 0, 0, 0.04);
+    }
+  }
+  
+  .no-data {
+    text-align: center;
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+.status-pill {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  
+  &.status-posted {
+    background-color: rgba(63, 81, 181, 0.1);
+    color: #3f51b5;
+  }
+  
+  &.status-draft {
+    background-color: rgba(244, 67, 54, 0.1);
+    color: #f44336;
+  }
+}
+
+.view-all {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.reports-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  
+  button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}

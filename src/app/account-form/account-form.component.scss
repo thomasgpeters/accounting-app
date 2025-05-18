@@ -1,0 +1,24 @@
+:host {
+  display: block;
+  padding: 20px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  
+  mat-form-field {
+    flex: 1;
+  }
+}
+
+.status-toggle {
+  margin: 16px 0;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}

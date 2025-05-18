@@ -1,0 +1,86 @@
+:host {
+  display: block;
+  padding: 20px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  
+  mat-form-field {
+    flex: 1;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.journal-lines-section {
+  margin-top: 24px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.journal-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.journal-line {
+  display: grid;
+  grid-template-columns: 3fr 3fr 2fr 2fr 80px;
+  gap: 8px;
+  align-items: center;
+}
+
+.line-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.totals-row {
+  display: grid;
+  grid-template-columns: 3fr 3fr 2fr 2fr 80px;
+  gap: 8px;
+  padding: 8px 0;
+  font-weight: 500;
+}
+
+.totals-label {
+  text-align: right;
+  padding-right: 16px;
+}
+
+.totals-value {
+  text-align: right;
+  padding-right: 16px;
+}
+
+.balance-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  margin-top: 8px;
+  border-radius: 4px;
+  background: rgba(244, 67, 54, 0.1);
+  color: #f44336;
+  
+  &.balanced {
+    background: rgba(76, 175, 80, 0.1);
+    color: #4caf50;
+  }
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}

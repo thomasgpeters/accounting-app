@@ -1,0 +1,19 @@
+:host {
+  display: block;
+  padding: 20px;
+}
+
+mat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.header-actions {
+  margin-left: auto;
+}
+
+.accounts-table {
+  width: 100%;
+}

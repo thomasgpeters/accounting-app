@@ -1,0 +1,69 @@
+.report-container {
+  padding: 20px;
+}
+
+.report-section {
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #3f51b5;
+}
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  
+  th, td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  
+  th {
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .amount-cell {
+    text-align: right;
+  }
+  
+  .total-row {
+    font-weight: 500;
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+  }
+  
+  .header-row {
+    font-weight: 500;
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+  
+  .grand-total-row {
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+}
+
+.report-totals {
+  margin-top: 24px;
+}
+
+.trial-balance {
+  th {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+  
+  tfoot {
+    border-top: 2px solid rgba(0, 0, 0, 0.3);
+  }
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+}

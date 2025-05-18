@@ -1,0 +1,119 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ isEditMode ? 'Edit' : 'Create' }} Journal Entry</mat-card-title>
+  </mat-card-header>
+  
+  <form [formGroup]="journalEntryForm" (ngSubmit)="onSubmit()">
+    <mat-card-content>
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>Entry Date</mat-label>
+          <input matInput [matDatepicker]="datepicker" formControlName="entryDate">
+          <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+          <mat-datepicker #datepicker></mat-datepicker>
+          <mat-error *ngIf="journalEntryForm.get('entryDate')?.hasError('required')">
+            Date is required
+          </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill">
+          <mat-label>Reference Number</mat-label>
+          <input matInput formControlName="referenceNumber" placeholder="Optional reference">
+        </mat-form-field>
+      </div>
+      
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Description</mat-label>
+        <input matInput formControlName="description" placeholder="Description of this journal entry">
+        <mat-error *ngIf="journalEntryForm.get('description')?.hasError('required')">
+          Description is required
+        </mat-error>
+      </mat-form-field>
+      
+      <mat-divider></mat-divider>
+      
+      <div class="journal-lines-section">
+        <div class="section-header">
+          <h3>Journal Entry Lines</h3>
+          <button type="button" mat-stroked-button color="primary" (click)="addLine()">
+            <mat-icon>add</mat-icon> Add Line
+          </button>
+        </div>
+        
+        <div formArrayName="lines" class="journal-lines">
+          <div *ngFor="let line of linesFormArray.controls; let i = index" 
+               [formGroupName]="i" class="journal-line">
+            
+            <mat-form-field>
+              <mat-label>Account</mat-label>
+              <mat-select formControlName="accountId" (selectionChange)="onAccountChange(i)">
+                <mat-option *ngFor="let account of accounts" [value]="account.id">
+                  {{ account.code }} - {{ account.name }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="linesFormArray.at(i).get('accountId')?.hasError('required')">
+                Account is required
+              </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field>
+              <mat-label>Description</mat-label>
+              <input matInput formControlName="description" placeholder="Line description">
+            </mat-form-field>
+            
+            <mat-form-field>
+              <mat-label>Debit</mat-label>
+              <input matInput type="number" formControlName="debitAmount" 
+                     min="0" (change)="onDebitChange(i)">
+            </mat-form-field>
+            
+            <mat-form-field>
+              <mat-label>Credit</mat-label>
+              <input matInput type="number" formControlName="creditAmount" 
+                     min="0" (change)="onCreditChange(i)">
+            </mat-form-field>
+            
+            <div class="line-actions">
+              <button type="button" mat-icon-button (click)="toggleDebitCredit(i)" 
+                      matTooltip="Switch Debit/Credit">
+                <mat-icon>swap_horiz</mat-icon>
+              </button>
+              
+              <button type="button" mat-icon-button color="warn" (click)="removeLine(i)"
+                      matTooltip="Remove Line" [disabled]="linesFormArray.length <= 1">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+          
+          <div class="totals-row">
+            <div class="totals-label">Totals:</div>
+            <div class="totals-spacer"></div>
+            <div class="totals-value">{{ totals.debits | currency }}</div>
+            <div class="totals-value">{{ totals.credits | currency }}</div>
+            <div class="totals-spacer"></div>
+          </div>
+          
+          <div class="balance-status" [class.balanced]="totals.isBalanced">
+            <mat-icon>{{ totals.isBalanced ? 'check_circle' : 'error' }}</mat-icon>
+            <span>
+              {{ totals.isBalanced ? 'Entry is balanced' : 'Entry is not balanced' }}
+              <span *ngIf="!totals.isBalanced">
+                (Difference: {{ totals.debits - totals.credits | currency }})
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+    
+    <mat-card-actions>
+      <button mat-button type="button" (click)="onCancel()">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" 
+              [disabled]="journalEntryForm.invalid || !totals.isBalanced">
+        {{ isEditMode ? 'Update' : 'Create' }} Journal Entry
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>
+

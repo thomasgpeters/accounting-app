@@ -1,0 +1,22 @@
+<div class="reports-container">
+  <h1>Financial Reports</h1>
+  
+  <div class="reports-grid">
+    <mat-card *ngFor="let report of reports" class="report-card">
+      <mat-card-header>
+        <div mat-card-avatar class="report-icon">
+          <mat-icon>{{ report.icon }}</mat-icon>
+        </div>
+        <mat-card-title>{{ report.title }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ report.description }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" [routerLink]="report.route">
+          View Report
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

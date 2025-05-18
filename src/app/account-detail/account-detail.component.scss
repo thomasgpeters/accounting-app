@@ -1,0 +1,27 @@
+:host {
+  display: block;
+  padding: 20px;
+}
+
+.account-detail-row {
+  display: flex;
+  padding: 16px 0;
+  
+  .label {
+    width: 150px;
+    font-weight: 500;
+  }
+  
+  .balance {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+}
+
+.active {
+  color: green;
+}
+
+.inactive {
+  color: red;
+}

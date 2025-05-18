@@ -1,0 +1,54 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Chart of Accounts</mat-card-title>
+    <div class="header-actions">
+      <button mat-raised-button color="primary" routerLink="/accounts/new">
+        <mat-icon>add</mat-icon> New Account
+      </button>
+    </div>
+  </mat-card-header>
+  
+  <mat-card-content>
+    <table mat-table [dataSource]="accounts" class="accounts-table">
+      <!-- Code Column -->
+      <ng-container matColumnDef="code">
+        <th mat-header-cell *matHeaderCellDef> Code </th>
+        <td mat-cell *matCellDef="let account"> {{account.code}} </td>
+      </ng-container>
+      
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let account"> {{account.name}} </td>
+      </ng-container>
+      
+      <!-- Type Column -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> Type </th>
+        <td mat-cell *matCellDef="let account"> {{account.type}} </td>
+      </ng-container>
+      
+      <!-- Balance Column -->
+      <ng-container matColumnDef="balance">
+        <th mat-header-cell *matHeaderCellDef> Balance </th>
+        <td mat-cell *matCellDef="let account"> {{account.balance | currency}} </td>
+      </ng-container>
+      
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let account">
+          <button mat-icon-button [routerLink]="['/accounts', account.id]" matTooltip="View">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button mat-icon-button [routerLink]="['/accounts', account.id, 'edit']" matTooltip="Edit">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>

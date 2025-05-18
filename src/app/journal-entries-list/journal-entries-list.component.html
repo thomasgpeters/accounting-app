@@ -1,0 +1,53 @@
+<div class="journal-entries-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Journal Entries</mat-card-title>
+      <div class="header-actions">
+        <button mat-raised-button color="primary" routerLink="/journal-entries/new">
+          <mat-icon>add</mat-icon> New Journal Entry
+        </button>
+      </div>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Reference</th>
+            <th>Description</th>
+            <th class="amount-cell">Amount</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let entry of journalEntries" class="entry-row" [routerLink]="['/journal-entries', entry.id]">
+            <td>{{ entry.entryDate | date }}</td>
+            <td>{{ entry.referenceNumber || '-' }}</td>
+            <td>{{ entry.description }}</td>
+            <td class="amount-cell">{{ entry.total | currency }}</td>
+            <td>
+              <div class="status-pill" [ngClass]="entry.isPosted ? 'status-posted' : 'status-draft'">
+                {{ entry.isPosted ? 'Posted' : 'Draft' }}
+              </div>
+            </td>
+            <td class="actions-cell">
+              <button mat-icon-button [routerLink]="['/journal-entries', entry.id]" (click)="$event.stopPropagation()" matTooltip="View">
+                <mat-icon>visibility</mat-icon>
+              </button>
+              <button mat-icon-button [routerLink]="['/journal-entries', entry.id, 'edit']" 
+                      [disabled]="entry.isPosted" (click)="$event.stopPropagation()" matTooltip="Edit">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button (click)="postEntry(entry.id, $event)" 
+                      [disabled]="entry.isPosted" matTooltip="Post">
+                <mat-icon>check_circle</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>

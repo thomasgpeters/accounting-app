@@ -1,0 +1,70 @@
+:host {
+  display: block;
+  padding: 20px;
+}
+
+.journal-entries-container {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+mat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.header-actions {
+  margin-left: auto;
+}
+
+.simple-table {
+  width: 100%;
+  border-collapse: collapse;
+  
+  th, td {
+    padding: 12px 8px;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  
+  th {
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .amount-cell {
+    text-align: right;
+  }
+  
+  .entry-row {
+    cursor: pointer;
+    
+    &:hover {
+      background: rgba(0, 0, 0, 0.04);
+    }
+  }
+  
+  .actions-cell {
+    white-space: nowrap;
+  }
+}
+
+.status-pill {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  
+  &.status-posted {
+    background-color: rgba(63, 81, 181, 0.1);
+    color: #3f51b5;
+  }
+  
+  &.status-draft {
+    background-color: rgba(244, 67, 54, 0.1);
+    color: #f44336;
+  }
+}

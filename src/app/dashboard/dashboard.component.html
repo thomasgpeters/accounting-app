@@ -1,0 +1,153 @@
+<div class="dashboard-container">
+  <h1>Accounting Dashboard</h1>
+
+  <!-- Quick Actions -->
+  <section class="quick-actions">
+    <h2>Quick Actions</h2>
+    <div class="action-buttons">
+      <button mat-raised-button color="primary" routerLink="/journal-entries/new">
+        <mat-icon>note_add</mat-icon>
+        <span>New Journal Entry</span>
+      </button>
+      
+      <button mat-raised-button color="primary" routerLink="/accounts/new">
+        <mat-icon>account_balance</mat-icon>
+        <span>New Account</span>
+      </button>
+      
+      <button mat-raised-button color="primary" routerLink="/journal-entries">
+        <mat-icon>list</mat-icon>
+        <span>Journal Entries</span>
+      </button>
+      
+      <button mat-raised-button color="primary" routerLink="/accounts">
+        <mat-icon>account_tree</mat-icon>
+        <span>Chart of Accounts</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Financial Overview -->
+  <section class="financial-overview">
+    <h2>Financial Overview</h2>
+    <div class="metrics-grid">
+      <mat-card class="metric-card">
+        <mat-card-content>
+          <div class="metric-title">Cash Balance</div>
+          <div class="metric-value">{{ cashBalance | currency }}</div>
+        </mat-card-content>
+      </mat-card>
+      
+      <mat-card class="metric-card">
+        <mat-card-content>
+          <div class="metric-title">Receivables</div>
+          <div class="metric-value">{{ receivablesBalance | currency }}</div>
+        </mat-card-content>
+      </mat-card>
+      
+      <mat-card class="metric-card">
+        <mat-card-content>
+          <div class="metric-title">Payables</div>
+          <div class="metric-value">{{ payablesBalance | currency }}</div>
+        </mat-card-content>
+      </mat-card>
+      
+      <mat-card class="metric-card">
+        <mat-card-content>
+          <div class="metric-title">Net Income</div>
+          <div class="metric-value" [ngClass]="{'positive': netIncome > 0, 'negative': netIncome < 0}">
+            {{ netIncome | currency }}
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </section>
+
+  <!-- Quick Stats -->
+  <section class="quick-stats">
+    <h2>Quick Stats</h2>
+    <div class="stats-grid">
+      <mat-card class="stat-card">
+        <mat-card-content>
+          <mat-icon class="stat-icon">account_balance</mat-icon>
+          <div class="stat-details">
+            <div class="stat-value">{{ totalAccounts }}</div>
+            <div class="stat-label">Active Accounts</div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      
+      <mat-card class="stat-card">
+        <mat-card-content>
+          <mat-icon class="stat-icon">description</mat-icon>
+          <div class="stat-details">
+            <div class="stat-value">{{ unpostedEntries }}</div>
+            <div class="stat-label">Unposted Entries</div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </section>
+
+  <!-- Recent Activity -->
+  <section class="recent-activity">
+    <h2>Recent Journal Entries</h2>
+    <mat-card>
+      <mat-card-content>
+        <table class="simple-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Reference</th>
+              <th>Description</th>
+              <th class="amount-cell">Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let entry of recentEntries" class="entry-row" [routerLink]="['/journal-entries', entry.id]">
+              <td>{{ entry.entryDate | date }}</td>
+              <td>{{ entry.referenceNumber || '-' }}</td>
+              <td>{{ entry.description }}</td>
+              <td class="amount-cell">{{ entry.total | currency }}</td>
+              <td>
+                <div class="status-pill" [ngClass]="entry.isPosted ? 'status-posted' : 'status-draft'">
+                  {{ entry.isPosted ? 'Posted' : 'Draft' }}
+                </div>
+              </td>
+            </tr>
+            <tr *ngIf="recentEntries.length === 0">
+              <td colspan="5" class="no-data">No journal entries found</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div class="view-all">
+          <button mat-button color="primary" routerLink="/journal-entries">
+            View All Journal Entries
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </section>
+
+    <!-- Add this to dashboard.component.html after another section -->
+    <section class="reports-section">
+    <h2>Financial Reports</h2>
+    <div class="reports-links">
+        <button mat-stroked-button routerLink="/reports/income-statement">
+        <mat-icon>trending_up</mat-icon>
+        Income Statement
+        </button>
+        <button mat-stroked-button routerLink="/reports/balance-sheet">
+        <mat-icon>account_balance</mat-icon>
+        Balance Sheet
+        </button>
+        <button mat-stroked-button routerLink="/reports/trial-balance">
+        <mat-icon>view_list</mat-icon>
+        Trial Balance
+        </button>
+    </div>
+    </section>
+
+</div>

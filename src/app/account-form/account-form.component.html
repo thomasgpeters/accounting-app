@@ -1,0 +1,59 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ isEditMode ? 'Edit' : 'Create' }} Account</mat-card-title>
+  </mat-card-header>
+  
+  <form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
+    <mat-card-content>
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>Account Code</mat-label>
+          <input matInput formControlName="code" placeholder="Enter account code">
+          <mat-error *ngIf="accountForm.get('code')?.hasError('required')">
+            Account code is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Account Name</mat-label>
+          <input matInput formControlName="name" placeholder="Enter account name">
+          <mat-error *ngIf="accountForm.get('name')?.hasError('required')">
+            Account name is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>Account Type</mat-label>
+          <mat-select formControlName="type">
+            <mat-option *ngFor="let type of accountTypes" [value]="type.value">
+              {{type.label}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="accountForm.get('type')?.hasError('required')">
+            Account type is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Initial Balance</mat-label>
+          <input matInput formControlName="balance" type="number" placeholder="Enter initial balance">
+        </mat-form-field>
+      </div>
+
+      <div class="status-toggle">
+        <mat-slide-toggle formControlName="isActive" color="primary">
+          Account is active
+        </mat-slide-toggle>
+      </div>
+    </mat-card-content>
+    
+    <mat-card-actions>
+      <button mat-button type="button" (click)="onCancel()">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="accountForm.invalid">
+        {{ isEditMode ? 'Update' : 'Create' }}
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>
