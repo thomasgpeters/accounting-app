@@ -8,10 +8,12 @@ import { JournalEntryDetailComponent } from './journal-entry-detail/journal-entr
 import { JournalEntryFormComponent } from './journal-entry-form/journal-entry-form.component';
 import { ReportsListComponent } from './reports-list/reports-list.component';
 import { FinancialReportComponent } from './financial-report/financial-report.component';
+import { FinancialDashboardComponent } from './financial-dashboard/financial-dashboard.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'financial-dashboard', component: FinancialDashboardComponent },
   
   // Account routes
   { path: 'accounts', component: AccountsListComponent },

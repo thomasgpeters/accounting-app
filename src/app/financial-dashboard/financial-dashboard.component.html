@@ -1,0 +1,72 @@
+<div class="dashboard-container">
+  <h1>Financial Dashboard</h1>
+  
+  <!-- Metrics Summary -->
+  <div class="metrics-grid">
+    <mat-card class="metric-card">
+      <mat-card-content>
+        <div class="metric-title">Total Assets</div>
+        <div class="metric-value">{{ formatCurrency(assetTotal) }}</div>
+      </mat-card-content>
+    </mat-card>
+    
+    <mat-card class="metric-card">
+      <mat-card-content>
+        <div class="metric-title">Total Liabilities</div>
+        <div class="metric-value">{{ formatCurrency(liabilityTotal) }}</div>
+      </mat-card-content>
+    </mat-card>
+    
+    <mat-card class="metric-card">
+      <mat-card-content>
+        <div class="metric-title">Total Equity</div>
+        <div class="metric-value">{{ formatCurrency(equityTotal) }}</div>
+      </mat-card-content>
+    </mat-card>
+    
+    <mat-card class="metric-card">
+      <mat-card-content>
+        <div class="metric-title">Net Income</div>
+        <div class="metric-value" [ngClass]="{'positive': netIncome > 0, 'negative': netIncome < 0}">
+          {{ formatCurrency(netIncome) }}
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
+  <!-- Account Stats -->
+  <div class="account-stats">
+    <h2>Account Statistics</h2>
+    <div class="stats-grid">
+      <mat-card>
+        <mat-card-content>
+          <div class="stat-value">{{ totalAccounts }}</div>
+          <div class="stat-label">Total Accounts</div>
+        </mat-card-content>
+      </mat-card>
+      
+      <mat-card>
+        <mat-card-content>
+          <div class="stat-value">{{ activeAccounts }}</div>
+          <div class="stat-label">Active Accounts</div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  
+  <!-- Links to Reports -->
+  <div class="report-links">
+    <h2>Financial Reports</h2>
+    <div class="links-grid">
+      <button mat-raised-button color="primary" routerLink="/reports/balance-sheet">
+        Balance Sheet
+      </button>
+      <button mat-raised-button color="primary" routerLink="/reports/income-statement">
+        Income Statement
+      </button>
+      <button mat-raised-button color="primary" routerLink="/reports/trial-balance">
+        Trial Balance
+      </button>
+    </div>
+  </div>
+</div>

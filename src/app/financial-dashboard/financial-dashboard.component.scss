@@ -1,0 +1,60 @@
+.dashboard-container {
+  padding: 20px;
+  
+  h1, h2 {
+    margin-bottom: 16px;
+  }
+  
+  h2 {
+    margin-top: 24px;
+  }
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.metric-card {
+  .metric-title {
+    font-size: 0.9rem;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 8px;
+  }
+  
+  .metric-value {
+    font-size: 1.5rem;
+    font-weight: 500;
+    
+    &.positive {
+      color: #4caf50;
+    }
+    
+    &.negative {
+      color: #f44336;
+    }
+  }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+  
+  .stat-value {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+  
+  .stat-label {
+    font-size: 0.9rem;
+    color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+.links-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
